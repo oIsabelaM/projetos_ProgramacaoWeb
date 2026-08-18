@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Forquinha 💕</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <header class="header">
+            <h1>Forquinha 💕</h1>
+            <p>Descubra a palavra antes que seja tarde!</p>
+        </header>
+
+        <section class="game-content">
+
+            <!-- Desenho da forca -->
+            <div class="hangman-container">
+
+                <svg class="hangman" viewBox="0 0 220 260">
+
+                    <!-- Base -->
+                    <line x1="20" y1="240" x2="180" y2="240" />
+
+                    <!-- Poste -->
+                    <line x1="60" y1="240" x2="60" y2="30" />
+
+                    <!-- Parte superior -->
+                    <line x1="60" y1="30" x2="150" y2="30" />
+
+                    <!-- Corda -->
+                    <line x1="150" y1="30" x2="150" y2="65" />
+
+                    <!-- Cabeça -->
+                    <circle
+                        id="head"
+                        cx="150"
+                        cy="90"
+                        r="25"
+                    />
+
+                    <!-- Corpo -->
+                    <line
+                        id="body"
+                        x1="150"
+                        y1="115"
+                        x2="150"
+                        y2="175"
+                    />
+
+                    <!-- Braço esquerdo -->
+                    <line
+                        id="left-arm"
+                        x1="150"
+                        y1="130"
+                        x2="115"
+                        y2="155"
+                    />
+
+                    <!-- Braço direito -->
+                    <line
+                        id="right-arm"
+                        x1="150"
+                        y1="130"
+                        x2="185"
+                        y2="155"
+                    />
+
+                    <!-- Perna esquerda -->
+                    <line
+                        id="left-leg"
+                        x1="150"
+                        y1="175"
+                        x2="120"
+                        y2="215"
+                    />
+
+                    <!-- Perna direita -->
+                    <line
+                        id="right-leg"
+                        x1="150"
+                        y1="175"
+                        x2="180"
+                        y2="215"
+                    />
+
+                </svg>
+
+                <div class="errors">
+                    Erros:
+                    <span id="errors">0</span>/6
+                </div>
+
+            </div>
+
+
+            <!-- Área do jogo -->
+            <div class="game-area">
+
+                <div id="word" class="word">
+                    _ _ _ _ _
+                </div>
+
+                <p id="hint" class="hint">
+                    Dica: programação
+                </p>
+
+                <div id="keyboard" class="keyboard"></div>
+
+                <button id="restart" class="restart">
+                    Jogar novamente 🔄
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div id="modal-icon" class="modal-icon">
+                🎉
+            </div>
+
+            <h2 id="modal-title">
+                Você ganhou!
+            </h2>
+
+            <p id="modal-message">
+                Parabéns! Você descobriu a palavra.
+            </p>
+
+            <button id="modal-button">
+                Jogar novamente
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

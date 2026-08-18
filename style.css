@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Nunito', sans-serif;
+
+    background:
+        radial-gradient(circle at top left, #ffd6ec, transparent 35%),
+        radial-gradient(circle at bottom right, #ddd6ff, transparent 35%),
+        #fff8fc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.game {
+    width: 100%;
+    max-width: 1000px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border-radius: 30px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 20px 50px rgba(168, 113, 151, 0.15);
+
+    border: 1px solid #ffe1f0;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header h1 {
+    font-size: 42px;
+
+    color: #d65a9d;
+
+    font-weight: 800;
+}
+
+.header p {
+    margin-top: 5px;
+
+    color: #8d7a88;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   GAME CONTENT
+========================= */
+
+.game-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1.2fr;
+
+    gap: 40px;
+
+    align-items: center;
+}
+
+
+/* =========================
+   FORCA
+========================= */
+
+.hangman-container {
+    text-align: center;
+
+    background: #fff5fa;
+
+    border-radius: 25px;
+
+    padding: 25px;
+}
+
+.hangman {
+    width: 100%;
+    max-width: 260px;
+
+    height: 300px;
+}
+
+.hangman line,
+.hangman circle {
+    stroke: #d65a9d;
+
+    stroke-width: 6;
+
+    fill: none;
+
+    stroke-linecap: round;
+}
+
+
+/* partes do boneco escondidas */
+
+#head,
+#body,
+#left-arm,
+#right-arm,
+#left-leg,
+#right-leg {
+    visibility: hidden;
+}
+
+
+.errors {
+    color: #8d7a88;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+#errors {
+    color: #d65a9d;
+}
+
+
+/* =========================
+   PALAVRA
+========================= */
+
+.game-area {
+    text-align: center;
+}
+
+.word {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    min-height: 65px;
+
+    margin-bottom: 15px;
+
+    color: #4b3f47;
+
+    font-size: 35px;
+
+    font-weight: 800;
+
+    letter-spacing: 8px;
+}
+
+
+.hint {
+    color: #a18d99;
+
+    font-size: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   TECLADO
+========================= */
+
+.keyboard {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 8px;
+
+    max-width: 500px;
+
+    margin: auto;
+}
+
+.key {
+    border: none;
+
+    padding: 12px 5px;
+
+    border-radius: 12px;
+
+    background: #f6e5ef;
+
+    color: #a34478;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.key:hover:not(:disabled) {
+    transform: translateY(-3px);
+
+    background: #eeb8d4;
+
+    color: white;
+}
+
+.key:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.5;
+}
+
+.key.correct {
+    background: #b8dfc4;
+
+    color: #39734a;
+}
+
+.key.wrong {
+    background: #f3b5b5;
+
+    color: #a83e3e;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.restart,
+#modal-button {
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 14px 25px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #d65a9d,
+        #9d7de0
+    );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(157, 125, 224, 0.25);
+
+    transition: 0.2s;
+}
+
+.restart:hover,
+#modal-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(157, 125, 224, 0.35);
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(75, 63, 71, 0.45);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    backdrop-filter: blur(5px);
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 100%;
+
+    max-width: 400px;
+
+    background: white;
+
+    border-radius: 30px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+    animation: aparecer 0.3s ease;
+}
+
+.modal-icon {
+    font-size: 60px;
+
+    margin-bottom: 15px;
+}
+
+.modal h2 {
+    color: #d65a9d;
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+.modal p {
+    color: #8d7a88;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 750px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .game {
+        padding: 25px 18px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .game-content {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .hangman {
+        height: 240px;
+    }
+
+    .keyboard {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .key {
+        padding: 10px 3px;
+    }
+
+    .word {
+        font-size: 25px;
+
+        gap: 7px;
+
+        letter-spacing: 5px;
+    }
+
+}
